@@ -1,0 +1,27 @@
+import java.util.Comparator;
+
+public class NoteComparator implements Comparator<String>
+{
+	public int compare(String s1, String s2)
+	{
+		char[] char1 = s1.toCharArray();
+		char[] char2 = s2.toCharArray();
+		for(char c : char1)
+		{
+			if(c == 65 || c == 66)
+				c += 26;
+			if(c == 35)
+				c = 58;
+		}
+		for(char c : char1)
+		{
+			if(c == 65 || c == 66)
+				c += 26;
+			if(c == 35)
+				c = 58;
+		}
+		String one = new String(char1);
+		String two = new String(char2);
+		return one.compareTo(two);
+	}
+}

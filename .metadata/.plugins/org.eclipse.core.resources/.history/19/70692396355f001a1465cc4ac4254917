@@ -1,0 +1,52 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class PianoAttempt
+{
+	public static void main(String[] args)
+	{
+		SwingUtilities.invokeLater(new Runnable() 
+			{
+				public void run()
+				{
+					createAndShowGUI();					
+				}
+			}	
+		
+		);
+	}
+	
+	private static void createAndShowGUI()
+	{
+		JFrame f = new JFrame("Piano");
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.add(new PianoPanel());
+		f.setResizable(false);
+		f.pack();
+		f.setVisible(true);
+		
+	}
+}
+
+class PianoPanel extends JPanel
+{
+	ImageIcon piano = new ImageIcon("piano.png");
+	public PianoPanel()
+	{
+		setBorder(BorderFactory.createLineBorder(Color.BLACK));
+	}
+	
+	public Dimension getPreferredSize()
+	{
+		return new Dimension(piano.getIconWidth(), piano.getIconHeight());
+	}
+	
+	public void paintComponent(Graphics g)
+	{
+		System.out.println("Calling me");
+		super.paintComponent(g);
+		JLabel label = new JLabel();
+		label.setIcon(piano);
+		add(label);		
+	}
+}

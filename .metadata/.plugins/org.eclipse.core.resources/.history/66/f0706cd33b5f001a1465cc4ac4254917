@@ -1,0 +1,65 @@
+import javax.swing.*;
+import java.awt.*;
+
+public class PianoWindow
+{
+	static private PianoGlassPane pianoGlassPane;
+	
+	public static void createAndShowGUI()
+	{
+		JFrame f = new JFrame("Piano");
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		Container contentPane = f.getContentPane();
+		contentPane.add(new PianoPanel());
+		
+		pianoGlassPane = new PianoGlassPane();
+		f.setGlassPane(pianoGlassPane);
+		pianoGlassPane.setVisible(true);
+		//pianoGlassPane.repaint();
+		f.setResizable(false);
+		f.pack();
+		f.setVisible(true);
+		
+	}
+}
+@SuppressWarnings("serial")
+class PianoGlassPane extends JComponent
+{
+	private Point point = new Point(8, 125);
+	private int interval = 24;
+	private int keys = 52;
+	protected void paintComponent(Graphics g)
+	{
+		for(int i = 0; i < keys; i++)
+		{
+			g.setColor(Color.RED);
+			g.fillOval(point.x + i * interval - 6, point.y - 6, 18, 18);
+		}
+	}
+}
+
+@SuppressWarnings("serial")
+class PianoPanel extends JPanel
+{
+	ImageIcon piano = new ImageIcon("piano.png");
+	public PianoPanel()
+	{
+		setBorder(BorderFactory.createLineBorder(Color.BLACK));
+
+		JLabel label = new JLabel();
+		label.setIcon(piano);
+		add(label);
+	}
+	
+	public Dimension getPreferredSize()
+	{
+		return new Dimension(piano.getIconWidth(), piano.getIconHeight());
+	}
+	
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponent(g);
+
+	}
+}
